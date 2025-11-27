@@ -1,0 +1,27 @@
+{% extends "storytracker/base.html" %}
+
+{% block title %}New Update – {{ story.title }} – StoryTracker{% endblock %}
+
+{% block content %}
+  <p><a href="{% url 'storytracker:story_detail' story.id %}">&larr; Back to story</a></p>
+
+  <h1 class="h3">Add Update for "{{ story.title }}"</h1>
+
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_note" class="form-label">Update note</label>
+      <textarea name="note" id="id_note" rows="5"
+                class="form-control" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_words_added" class="form-label">Words added (optional)</label>
+      <input type="number" name="words_added" id="id_words_added"
+             min="0" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add update</button>
+  </form>
+{% endblock %}

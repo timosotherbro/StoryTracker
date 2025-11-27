@@ -1,0 +1,36 @@
+{% extends "storytracker/base.html" %}
+
+{% block title %}New Story – StoryTracker{% endblock %}
+
+{% block content %}
+  <p><a href="{% url 'storytracker:story_list' %}">&larr; Back to all stories</a></p>
+
+  <h1 class="h3">Add New Story</h1>
+
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_title" class="form-label">Title</label>
+      <input type="text" name="title" id="id_title" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_genre" class="form-label">Genre</label>
+      <input type="text" name="genre" id="id_genre" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_tags" class="form-label">Tags (comma-separated)</label>
+      <input type="text" name="tags" id="id_tags" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_summary" class="form-label">Summary</label>
+      <textarea name="summary" id="id_summary" rows="5"
+                class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create story</button>
+  </form>
+{% endblock %}

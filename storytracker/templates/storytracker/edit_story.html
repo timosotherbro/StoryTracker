@@ -1,0 +1,39 @@
+{% extends "storytracker/base.html" %}
+
+{% block title %}Edit {{ story.title }} – StoryTracker{% endblock %}
+
+{% block content %}
+  <p><a href="{% url 'storytracker:story_detail' story.id %}">&larr; Back to story</a></p>
+
+  <h1 class="h3">Edit Story</h1>
+
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_title" class="form-label">Title</label>
+      <input type="text" name="title" id="id_title" value="{{ story.title }}"
+             class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="id_genre" class="form-label">Genre</label>
+      <input type="text" name="genre" id="id_genre" value="{{ story.genre }}"
+             class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_tags" class="form-label">Tags (comma-separated)</label>
+      <input type="text" name="tags" id="id_tags" value="{{ story.tags }}"
+             class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_summary" class="form-label">Summary</label>
+      <textarea name="summary" id="id_summary" rows="5"
+                class="form-control">{{ story.summary }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </form>
+{% endblock %}

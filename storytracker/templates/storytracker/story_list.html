@@ -1,0 +1,36 @@
+{% extends "storytracker/base.html" %}
+
+{% block title %}StoryTracker – All Stories{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">All Stories</h1>
+    <a class="btn btn-primary" href="{% url 'storytracker:new_story' %}">
+      Add new story
+    </a>
+  </div>
+
+  {% if stories %}
+    <ul class="list-group">
+      {% for story in stories %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <a href="{% url 'storytracker:story_detail' story.id %}">
+              <strong>{{ story.title }}</strong>
+            </a>
+            {% if story.genre %}
+              <span class="text-muted">– {{ story.genre }}</span>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">
+      No stories yet.
+      <a href="{% url 'storytracker:new_story' %}" class="alert-link">
+        Create your first one.
+      </a>
+    </div>
+  {% endif %}
+{% endblock %}
